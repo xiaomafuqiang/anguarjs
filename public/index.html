@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+</head>
+
+<body ng-controller="myController">
+
+
+    <button ng-click="fn()">click get something</button>
+    <script>
+        // window.JSON_CALLBACK = function (d) {
+        //     console.log(d)
+        // }
+        let myApp = angular.module('myApp', ['ng']);
+        myApp.controller('myController', function ($scope, $http) {
+            $scope.fn = function(){
+                $http.jsonp("http://f.apiplus.cn/bj11x5.json?callback=JSON_CALLBACK&siteid=137bd406").success(function(data){ 
+                    console.log(data)
+                 });
+            }
+        })
+    </script>
+</body>
+
+</html>
