@@ -20,7 +20,7 @@ gulp.task('less', function(){
 
 gulp.task('watch', function(){
     
-    gulp.watch('./public/*.html').on('change', bs.reload);
+    gulp.watch('./public/**').on('change', bs.reload);
     gulp.watch('./public/less/*.less', ['less']).on('change', bs.reload);
 
 })
