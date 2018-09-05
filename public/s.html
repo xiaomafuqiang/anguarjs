@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .b {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<h1>test search</h1>
+<input type="text" id="input"> <button id="btn">sub</button><br>
+<div id="container">
+    <div class="item">test<b class="b">666</b></div>
+</div>
+
+<script>
+
+    var data = ['some test ui i', 'my things ui sdf ;', ' search', 'some xc i', 'asdkj ', 'zhonggulad', '汉子', '中国人', '魔道祖师作者回应还好我','毕业的早阿根廷超市遭哄抢检查组入驻滴滴'];
+
+    function format() {
+        var key = input.value.trim();
+        if (!key) {
+            return '';
+        }
+
+        var copyData = JSON.parse( JSON.stringify(data));
+        copyData = copyData.filter(function (value) {
+            return new RegExp(`(${key})`, 'gi').test(value);
+        });
+        console.log(copyData);
+
+        return '<div class="item">'+copyData.map(function (value, index) {
+            return value.replace(
+                new RegExp(`(${key})`, 'gi'),
+                `<b class="b">$1</b>`
+            )
+        }).join('</div><div class="item">') + '</div>';
+    }
+
+    input.oninput = function () {
+        var res = format();
+        container.innerHTML = res;
+    }
+
+</script>
+
+</body>
+</html>
